@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  width: 100vw;
+  min-height: 100vh;
+  background: #05050f;
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+}
