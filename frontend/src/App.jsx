@@ -98,16 +98,19 @@ function App() {
 
   const handleStart = async (name, age = 1) => {
     setAgeLevel(age)
+    const fallback = { name: name.trim().toLowerCase(), scores:{}, unlockedPlanets:['matematica','linguistica'], sessionHistory:[] }
+    setPlayer(fallback)
     try {
+      const ctrl = new AbortController()
+      const tid  = setTimeout(() => ctrl.abort(), 6000)
       const res  = await fetch(`${API}/api/child/find-or-create`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name }),
+        body: JSON.stringify({ name }), signal: ctrl.signal,
       })
+      clearTimeout(tid)
       const data = await res.json()
       setPlayer(data)
-    } catch {
-      setPlayer({ name: name.trim().toLowerCase(), scores:{}, unlockedPlanets:['matematica','linguistica'], sessionHistory:[] })
-    }
+    } catch {}
   }
 
   const addScore = useCallback(async (planet, points) => {
