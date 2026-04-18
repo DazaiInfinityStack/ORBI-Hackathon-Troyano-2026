@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import './OrbiChat.css'
 
-const API = 'https://project-35560881-820d-4f24-9e9.uc.r.appspot.com'
+const API = 'http://localhost:3001'
 let _mid = 0
 
 // Persist chat state across remounts (user entering/leaving mini-games)

@@ -24,7 +24,7 @@ import ParentalDashboard from './pages/ParentalDashboard'
 import OrbiChat          from './pages/OrbiChat'
 import './App.css'
 
-const API = 'https://project-35560881-820d-4f24-9e9.uc.r.appspot.com'
+const API = 'http://localhost:3001'
 
 const PLANET_NAMES = {
   espacial:'Prisma', musical:'Sonus', cinestetica:'Kinetis',
