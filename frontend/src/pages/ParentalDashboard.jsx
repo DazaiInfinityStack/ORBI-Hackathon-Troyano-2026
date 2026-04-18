@@ -163,7 +163,7 @@ export default function ParentalDashboard({ player, onClose }) {
   useEffect(() => {
     fetch(`${API}/api/story/parent-report`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ childName: player.name, scores, unlockedPlanets, totalStars, sessionHistory }),
+      body: JSON.stringify({ childName: displayName, scores, unlockedPlanets, totalStars, sessionHistory }),
     })
       .then(r => r.json())
       .then(d => { setReport(d.report || null); setLoading(false) })

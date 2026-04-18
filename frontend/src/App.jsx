@@ -96,14 +96,15 @@ function App() {
   const [sessionAudioUrl, setSessionAudioUrl] = useState(null)
   const sessionPtsRef                         = useRef(0)
 
-  const handleStart = async (name, age = 1) => {
+  const handleStart = async (name, age = 1, isNew = false) => {
     setAgeLevel(age)
     const fallback = { name: name.trim().toLowerCase(), scores:{}, unlockedPlanets:['matematica','linguistica'], sessionHistory:[] }
     setPlayer(fallback)
     try {
-      const ctrl = new AbortController()
-      const tid  = setTimeout(() => ctrl.abort(), 6000)
-      const res  = await fetch(`${API}/api/child/find-or-create`, {
+      const ctrl     = new AbortController()
+      const tid      = setTimeout(() => ctrl.abort(), 6000)
+      const endpoint = isNew ? '/api/child/reset' : '/api/child/find-or-create'
+      const res      = await fetch(`${API}${endpoint}`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name }), signal: ctrl.signal,
       })

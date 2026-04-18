@@ -30,6 +30,21 @@ function checkUnlocks(player) {
   return newlyUnlocked
 }
 
+// POST /api/child/reset — new user flow: always start fresh
+router.post('/reset', async (req, res) => {
+  const { name } = req.body
+  if (!name) return res.status(400).json({ error: 'Falta nombre' })
+  try {
+    const key = name.trim().toLowerCase()
+    await Player.deleteOne({ name: key })
+    const player = await Player.create({ name: key })
+    res.json(player)
+  } catch (err) {
+    console.error('reset error:', err)
+    res.status(500).json({ error: 'Error al resetear perfil' })
+  }
+})
+
 // POST /api/child/find-or-create
 router.post('/find-or-create', async (req, res) => {
   const { name } = req.body

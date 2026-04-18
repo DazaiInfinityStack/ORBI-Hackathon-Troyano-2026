@@ -58,13 +58,24 @@ function OrbiChat({ player }) {
   const chunksRef       = useRef([])
   const currentAudioRef = useRef(null)
   const scrollRef       = useRef(null)
+  const lastMsgRef      = useRef(null)
   const messagesRef     = useRef([])
 
   useEffect(() => { messagesRef.current = messages; _savedMessages = messages }, [messages])
   useEffect(() => { _savedOpen = open }, [open])
 
   useEffect(() => {
-    if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+    if (!lastMsgRef.current || !scrollRef.current) return
+    const container = scrollRef.current
+    const el        = lastMsgRef.current
+    const last      = messages[messages.length - 1]
+    if (last?.from === 'user') {
+      container.scrollTop = container.scrollHeight
+    } else {
+      const elRect        = el.getBoundingClientRect()
+      const containerRect = container.getBoundingClientRect()
+      container.scrollTop += elRect.top - containerRect.top - 8
+    }
   }, [messages])
 
   // Auto-open only once per session (never again after re-mount)
@@ -128,7 +139,6 @@ function OrbiChat({ player }) {
       const data  = await res.json()
       const reply = data.reply || '¡Tormenta estelar! Intenta de nuevo.'
       setMessages(prev => [...prev, { id: ++_mid, from: 'orbi', text: reply }])
-      setOrbiState('idle')
       autoSpeak(reply)
     } catch { setOrbiState('idle') }
   }, [player, autoSpeak])
@@ -239,8 +249,12 @@ function OrbiChat({ player }) {
 
           {/* Messages */}
           <div className="ocp-messages" ref={scrollRef}>
-            {messages.map(msg => (
-              <div key={msg.id} className={`ocp-bubble ${msg.from}`}>
+            {messages.map((msg, idx) => (
+              <div
+                key={msg.id}
+                ref={idx === messages.length - 1 ? lastMsgRef : null}
+                className={`ocp-bubble ${msg.from}`}
+              >
                 {msg.from === 'orbi' && (
                   <img src="/orbi-mascota.png" width="26" height="26" alt="" className="ocp-bubble-avatar" />
                 )}

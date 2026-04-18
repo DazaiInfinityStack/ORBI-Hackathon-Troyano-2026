@@ -204,7 +204,7 @@ function Welcome({ onStart }) {
             <p className="pin-hint">Guárdalo bien para poder regresar</p>
             <button
               className="btn-primary"
-              onClick={() => onStart(displayName, ageToLevel(loadUser(name)?.age || 7))}
+              onClick={() => onStart(displayName, ageToLevel(loadUser(name)?.age || 7), true)}
             >
               ¡Entendido!
             </button>
