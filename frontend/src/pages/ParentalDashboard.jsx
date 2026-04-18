@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import './ParentalDashboard.css'
 
-const API = 'http://localhost:3001'
+const API = 'https://project-35560881-820d-4f24-9e9.uc.r.appspot.com'
 
 const PLANET_COLORS = {
   matematica:    '#4cc9f0', linguistica:   '#06d6a0', naturalista:   '#80b918',

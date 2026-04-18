@@ -1,0 +1,7 @@
+runtime: nodejs20
+env: standard
+
+env_variables:
+  MONGODB_URI: "mongodb+srv://cquintana28_db_user:ymkVeglov5QEnvRB@orbi-hackathon.fhupctu.mongodb.net/?appName=orbi-hackathon"
+  GEMINI_API_KEY: "AIzaSyBlGkBCY7qCCY3ED1loNRogvcgHrrZNJ7w"
+  ELEVENLABS_API_KEY: "sk_0e1f1b2e30e7d04cc7f3ed2c027ae9aa0460f6a63b871730"
