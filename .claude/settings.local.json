@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(npx cap *)",
+      "Bash(attrib KinetisGame.jsx)",
+      "Bash(attrib *)",
+      "Bash(curl -s \"https://generativelanguage.googleapis.com/v1beta/models?key=AIzaSyBlGkBCY7qCCY3ED1loNRogvcgHrrZNJ7w\")",
+      "Bash(node -e \"const d=require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\); const j=JSON.parse\\(d\\); j.models?.forEach\\(m=>console.log\\(m.name, m.supportedGenerationMethods?.join\\(','\\)\\)\\)\")",
+      "Bash(node -e \"const j=require\\('%TEMP%/gemini_models.json'\\); j.models?.forEach\\(m=>{ if\\(m.supportedGenerationMethods?.includes\\('generateContent'\\)\\) console.log\\(m.name\\) }\\)\")",
+      "Bash(curl -s \"https://generativelanguage.googleapis.com/v1beta/models?key=AIzaSyBlGkBCY7qCCY3ED1loNRogvcgHrrZNJ7w\" -o /tmp/gemini_models.json)",
+      "Bash(node -e \"const j=require\\('/tmp/gemini_models.json'\\); j.models?.filter\\(m=>m.supportedGenerationMethods?.includes\\('generateContent'\\)\\).forEach\\(m=>console.log\\(m.name\\)\\)\")",
+      "Bash(node *)",
+      "Bash(curl *)",
+      "Bash(grep -E '\\\\.\\(png|jpg|jpeg|gif|svg\\)$')",
+      "Bash(chmod 644 *)",
+      "Bash(gcloud version *+)",
+      "Bash(winget install *)",
+      "Bash(gcloud version *)",
+      "Bash(gcloud services enable *)",
+      "Bash(docker *)",
+      "Bash(gcloud builds log 1ccd91cc-3668-40df-a588-8a42f25023c7 *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git rm *)",
+      "Bash(git pull *)"
+    ]
+  }
+}
