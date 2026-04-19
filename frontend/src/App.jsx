@@ -123,7 +123,7 @@ function App() {
         body: JSON.stringify({ planet, points }),
       })
       const data = await res.json()
-      setPlayer(data.player)
+      if (data.player) setPlayer(data.player)
       if (data.newlyUnlocked?.length > 0) setUnlockAlert(data.newlyUnlocked)
     } catch {}
   }, [player])
